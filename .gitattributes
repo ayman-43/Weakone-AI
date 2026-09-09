@@ -1,0 +1,2 @@
+# Files are served verbatim — keep bytes exactly as committed, no EOL rewriting.
+* -text

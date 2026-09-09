@@ -1,0 +1,20 @@
+/* Local cleanup for the Approach page.
+ *
+ * The page carried a template leftover: a grid of image tiles, each
+ * linking to a stranger's X profile, plus three inline phrases linked the same
+ * way. The handles have been stripped from the HTML and the page bundle and
+ * replaced with the marker below; these rules drop what they were attached to.
+ * The injector removes the nodes outright once hydration settles — this covers
+ * the window before that and any later Framer re-render.
+ */
+
+/* Image tiles: gone, images included. */
+a[href*="w1-removed"]:not(.framer-text) { display: none !important; }
+
+/* Inline phrases: keep the words, drop the link affordance. */
+a[href*="w1-removed"].framer-text {
+  color: inherit !important;
+  text-decoration: none !important;
+  cursor: text;
+  pointer-events: none;
+}

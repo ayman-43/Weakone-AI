@@ -1,0 +1,47 @@
+/* Active-state styling for the Services page navigation.
+ *
+ * Framer marked the active tab from the route, which no longer means anything
+ * now that the tabs are in-page anchors — the state follows the section in
+ * view instead. Colours below match the template's own active/inactive tabs.
+ * Everything is gated on .w1-nav-ready so nothing shifts before the script
+ * takes over.
+ */
+
+.w1-nav-ready a.framer-1j0e53j { position: relative; }
+
+/* Template's own 1px active bar — only under the section actually in view. */
+.w1-nav-ready a.framer-1j0e53j:not([data-w1-active="true"]) .framer-EwYot {
+  display: none !important;
+}
+
+.w1-nav-ready a.framer-1j0e53j[data-w1-active="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgb(0, 0, 0);
+  pointer-events: none;
+}
+
+.w1-nav-ready a.framer-1j0e53j[data-w1-active="true"] h3 { color: rgb(0, 0, 0) !important; }
+.w1-nav-ready a.framer-1j0e53j[data-w1-active="true"] p { color: rgb(100, 100, 101) !important; }
+
+.w1-nav-ready a.framer-1j0e53j:not([data-w1-active="true"]) h3,
+.w1-nav-ready a.framer-1j0e53j:not([data-w1-active="true"]) p {
+  color: rgb(155, 155, 156) !important;
+}
+
+.w1-nav-ready a.framer-1j0e53j h3,
+.w1-nav-ready a.framer-1j0e53j p {
+  transition: color 200ms cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* Contents list on the left. */
+.w1-nav-ready a[data-w1-target][data-w1-active="true"] { color: rgb(0, 0, 0) !important; }
+
+.w1-nav-ready a[data-w1-target] { cursor: pointer; }
+
+/* Land sections below the sticky header. */
+#overview, #workplace, #members, #connections, #usage, #plans { scroll-margin-top: 140px; }

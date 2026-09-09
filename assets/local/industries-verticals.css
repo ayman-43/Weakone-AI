@@ -1,0 +1,178 @@
+/* Local addition: full vertical list for the Industries page.
+   Source content: https://weekoneai.com/industries (SEC 02 / 03 · verticals)
+   Palette + type follow the site theme. */
+
+/* Retire the single-vertical card this block replaces. The injector also
+   removes the node once hydration settles; this rule covers the window
+   before that and any later Framer re-render that puts it back. */
+.framer-1bndo69 { display: none !important; }
+
+.w1-verticals {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 80px 24px 40px;
+  background: #0d0d12;
+  font-family: "TWK Lausanne 300", "TWK Lausanne 300 Placeholder", sans-serif;
+}
+
+.w1-verticals *,
+.w1-verticals *::before,
+.w1-verticals *::after { box-sizing: border-box; }
+
+.w1-verticals__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.w1-verticals__eyebrow {
+  margin: 0 0 14px;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(99, 100, 117);
+}
+
+.w1-verticals__title {
+  margin: 0 0 36px;
+  font-family: "TWK Lausanne 400", "TWK Lausanne 400 Placeholder", sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+  font-weight: 400;
+  color: rgb(204, 209, 233);
+}
+
+.w1-verticals__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .w1-verticals__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .w1-verticals__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.w1-vertical {
+  margin: 0;
+  padding: 20px;
+  border: 1px solid rgba(227, 227, 254, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  scroll-margin-top: 96px;
+  transition: border-color 200ms cubic-bezier(0.44, 0, 0.56, 1),
+              background-color 200ms cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.w1-vertical:hover,
+.w1-vertical:focus-within {
+  border-color: rgba(227, 227, 254, 0.24);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.w1-vertical__h {
+  margin: 0;
+  font-family: "TWK Lausanne 400", "TWK Lausanne 400 Placeholder", sans-serif;
+  font-size: clamp(17px, 1.9vw, 21px);
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+.w1-vertical__toggle {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: rgb(204, 209, 233);
+  text-align: left;
+  cursor: pointer;
+}
+
+.w1-vertical__toggle:focus-visible {
+  outline: 1px solid rgba(227, 227, 254, 0.5);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.w1-vertical__hook {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgb(185, 189, 207);
+}
+
+.w1-vertical__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.w1-vertical[data-open="true"] .w1-vertical__panel { grid-template-rows: 1fr; }
+
+.w1-vertical__panel > div { overflow: hidden; }
+
+.w1-vertical__body {
+  margin: 0;
+  padding-top: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgb(185, 189, 207);
+}
+
+.w1-vertical__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  padding-bottom: 4px;
+}
+
+.w1-chip {
+  padding: 4px 10px;
+  border: 1px solid rgba(227, 227, 254, 0.08);
+  border-radius: 30px;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  line-height: 1.4;
+  color: rgb(144, 149, 164);
+}
+
+.w1-vertical__cta {
+  margin: 12px 0 0;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(144, 149, 164);
+  transition: color 200ms cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.w1-vertical:hover .w1-vertical__cta,
+.w1-vertical[data-open="true"] .w1-vertical__cta { color: rgb(204, 209, 233); }
+
+.w1-verticals__note {
+  margin: 32px 0 0;
+  max-width: 46em;
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgb(144, 149, 164);
+}
+
+.w1-verticals__note em {
+  font-style: normal;
+  color: rgb(204, 209, 233);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w1-vertical,
+  .w1-vertical__panel,
+  .w1-vertical__cta { transition: none; }
+}

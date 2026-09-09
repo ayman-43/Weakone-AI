@@ -1,0 +1,14 @@
+/* Local fix: highlight the current nav item on the Insights page.
+ *
+ * The header marks the active item from a stale enum in the nav component —
+ * its "Insights" slot styles the item labelled Industries, and the Insights
+ * item carries a fixed variant that never goes active. The links and the
+ * data-framer-page-link-current attribute are correct, so drive the colour
+ * from that instead. Scoped to <nav> so footer links keep their own styling,
+ * and to this page, whose header sits on the light ground (active is #000,
+ * inactive rgb(155,155,156) — the same values the other light pages use).
+ */
+
+nav a[data-framer-page-link-current="true"] p.framer-text {
+  color: rgb(0, 0, 0) !important;
+}

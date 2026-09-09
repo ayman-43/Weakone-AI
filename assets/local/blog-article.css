@@ -1,0 +1,33 @@
+/* Local additions for the Insights article page (/blog/pre-seed-announcement).
+ *
+ * The template hero was a green gradient with a stock logo mark
+ * sitting on top of it. It carries branding that isn't ours, so the gradient
+ * block becomes the article's own photograph and the mark is hidden.
+ */
+
+/* Hero block — 1080x460 in the template. */
+.framer-xn1m2q {
+  background-image: url("/assets/weekoneai.com/media/insight-missed-call.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* The logo mark that sat on the gradient. */
+.framer-1gwlehg { display: none !important; }
+
+/* The template carried two author bylines; this piece has one. */
+.framer-fs7sq6.framer-vjl46z { display: none !important; }
+
+/* The template signed off with the original founders' handwritten signature. */
+.framer-d9ah3l { display: none !important; }
+
+/* /blog/vision hero — same treatment: the template mark gives way to the essay photo. */
+.framer-1ebiwr0 {
+  background-image: url("/assets/weekoneai.com/media/insight-speed-moat.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.framer-ao247s { display: none !important; }

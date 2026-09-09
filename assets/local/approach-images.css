@@ -1,0 +1,51 @@
+/* Local addition: real imagery for the Approach page.
+ *
+ * This page's images were never wired up — all 136 <img> tags were left
+ * as an inline SVG gradient placeholder, which is why the four image slots
+ * rendered as empty boxes. These rules paint the company's own photography
+ * (pulled from weekoneai.com/media) into those slots and hide the placeholder.
+ *
+ * Done in CSS rather than by setting img.src, so a Framer re-render can't undo
+ * it. Slot sizes and the originals' aspect ratios are noted per rule; each file
+ * is sized for its slot, and each box carries a base colour so the block never
+ * shows a hole if the decode lands a frame late.
+ */
+
+/* Hero plate under "Built now, for now." — slot 1254x740, source 1600x1072 */
+.framer-1pz8qm3 [data-framer-background-image-wrapper] {
+  background-image: url("/assets/weekoneai.com/media/plate-desk.jpg");
+}
+
+/* Left of the paired plates — slot 416x660, source 900x1125 (portrait) */
+.framer-gqxkpu [data-framer-background-image-wrapper] {
+  background-image: url("/assets/weekoneai.com/media/plate-fix-daylight-mobile.jpg");
+}
+
+/* Right of the paired plates — slot 833x660, source 1536x1024 */
+.framer-rquowg [data-framer-background-image-wrapper] {
+  background-image: url("/assets/weekoneai.com/media/pillar-front-office.jpg");
+}
+
+/* Thumbnail in the principles list — slot 180x220, source cropped to 360x440 */
+.framer-8i2vun [data-framer-background-image-wrapper] {
+  background-image: url("/assets/weekoneai.com/media/pillar-strategy-thumb.jpg");
+}
+
+.framer-1pz8qm3 [data-framer-background-image-wrapper],
+.framer-gqxkpu [data-framer-background-image-wrapper],
+.framer-rquowg [data-framer-background-image-wrapper],
+.framer-8i2vun [data-framer-background-image-wrapper] {
+  background-color: #e8e8ec;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+}
+
+/* The gradient placeholder would sit on top of the background. */
+.framer-1pz8qm3 [data-framer-background-image-wrapper] > img,
+.framer-gqxkpu [data-framer-background-image-wrapper] > img,
+.framer-rquowg [data-framer-background-image-wrapper] > img,
+.framer-8i2vun [data-framer-background-image-wrapper] > img {
+  display: none !important;
+}

@@ -1,0 +1,92 @@
+/* Local addition: the "Watch the demo" button opens the explainer video.
+ * Palette follows the site's dark theme (#0d0d12 ground, rgba(227,227,254,.08)
+ * borders, 14px radius).
+ */
+
+.w1-video {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.w1-video[data-open="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.w1-video__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 6, 10, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.w1-video__frame {
+  position: relative;
+  width: min(100%, 1100px);
+  border: 1px solid rgba(227, 227, 254, 0.12);
+  border-radius: 14px;
+  background: #0d0d12;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  transform: translateY(8px) scale(0.99);
+  transition: transform 260ms cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.w1-video[data-open="true"] .w1-video__frame {
+  transform: none;
+}
+
+.w1-video__player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.w1-video__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(227, 227, 254, 0.14);
+  border-radius: 30px;
+  background: rgba(13, 13, 18, 0.72);
+  color: rgb(204, 209, 233);
+  font: 400 18px/1 system-ui, sans-serif;
+  cursor: pointer;
+  transition: border-color 200ms, background-color 200ms;
+}
+
+.w1-video__close:hover {
+  border-color: rgba(227, 227, 254, 0.32);
+  background: rgba(13, 13, 18, 0.92);
+}
+
+.w1-video__close:focus-visible {
+  outline: 1px solid rgba(227, 227, 254, 0.6);
+  outline-offset: 3px;
+}
+
+/* Keep the page behind from scrolling while the video is up. */
+html.w1-video-open,
+html.w1-video-open body {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w1-video,
+  .w1-video__frame { transition: none; }
+}
