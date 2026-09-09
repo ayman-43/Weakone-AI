@@ -14,7 +14,8 @@ from this folder; the site makes no external network requests at runtime.
 | [Approach](docs/screenshots/04-approach.png) | the method — four phases, four artifacts |
 | [Insights](docs/screenshots/05-insights.png) | article index |
 | [Article](docs/screenshots/07-insight-article.png) | long-form essay layout |
-| [Contact](docs/screenshots/06-contact.png) | working session, email and voice line |
+| [Contact](docs/screenshots/06-contact.png) | booking calendar, email and voice line |
+| [Booking](docs/screenshots/08-booking.png) | pick a day, pick a slot, send the request |
 
 A scroll-through of the Services page:
 [`docs/media/services-walkthrough.mp4`](docs/media/services-walkthrough.mp4).
@@ -74,6 +75,7 @@ comment explaining what it does and why.
 | `insights-nav.css` | Current-page highlight in the header |
 | `demo-video.*` | "Watch the demo" overlay player |
 | `booking.*` | Sends every "Book a working session" to `/contact`, and puts the voice line beside the email address there |
+| `booking-calendar.*` | The booking calendar on `/contact` — weekdays only, 30-minute slots 09:00–17:30 ET, submitting opens a pre-addressed email with the slot and details |
 
 These run after the page hydrates and re-apply themselves if a re-render
 disturbs them, so they survive client-side navigation.

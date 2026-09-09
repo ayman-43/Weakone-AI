@@ -1,0 +1,243 @@
+/* Booking calendar for the contact page.
+ *
+ * Pick a weekday, pick a 30-minute slot, fill the short form — submitting opens
+ * a pre-addressed email with the slot and details, which is how the booking
+ * flow works. No server, no third-party scheduler.
+ */
+
+.w1-cal {
+  max-width: 760px;
+  margin: 40px auto 0;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-family: "TWK Lausanne 300", "TWK Lausanne 300 Placeholder", sans-serif;
+  color: rgb(32, 35, 46);
+  text-align: left;
+}
+
+.w1-cal__grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .w1-cal__grid { grid-template-columns: 1.15fr 1fr; }
+}
+
+.w1-cal__eyebrow {
+  margin: 0 0 12px;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(140, 140, 145);
+}
+
+/* --- month header ------------------------------------------------------- */
+
+.w1-cal__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.w1-cal__month {
+  font-family: "TWK Lausanne 400", "TWK Lausanne 400 Placeholder", sans-serif;
+  font-size: 17px;
+}
+
+.w1-cal__month span {
+  margin-left: 6px;
+  color: rgb(140, 140, 145);
+}
+
+.w1-cal__nav { display: flex; gap: 4px; }
+
+.w1-cal__nav button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  color: rgb(32, 35, 46);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 160ms, color 160ms;
+}
+
+.w1-cal__nav button:hover:not(:disabled) { border-color: rgba(0, 0, 0, 0.3); }
+.w1-cal__nav button:disabled { opacity: 0.35; cursor: default; }
+
+/* --- days --------------------------------------------------------------- */
+
+.w1-cal__dow,
+.w1-cal__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.w1-cal__dow span {
+  padding: 6px 0;
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(160, 160, 165);
+}
+
+.w1-cal__days button {
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: rgb(32, 35, 46);
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 160ms, color 160ms;
+}
+
+.w1-cal__days button:hover:not(:disabled) {
+  background: rgba(255, 74, 167, 0.09);
+  color: rgb(214, 46, 133);
+}
+
+.w1-cal__days button:disabled {
+  color: rgb(190, 190, 195);
+  cursor: default;
+}
+
+.w1-cal__days button[aria-pressed="true"] {
+  background: rgb(32, 35, 46);
+  color: #fff;
+}
+
+.w1-cal__days .w1-cal__blank { visibility: hidden; }
+
+.w1-cal__tz {
+  margin: 14px 0 0;
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgb(160, 160, 165);
+}
+
+/* --- slots -------------------------------------------------------------- */
+
+.w1-cal__slots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 288px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.w1-cal__slots button {
+  padding: 9px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: #fff;
+  color: rgb(32, 35, 46);
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms, color 160ms;
+}
+
+.w1-cal__slots button:hover { border-color: rgb(255, 74, 167); color: rgb(214, 46, 133); }
+.w1-cal__slots button[aria-pressed="true"] { border-color: rgb(32, 35, 46); background: rgb(32, 35, 46); color: #fff; }
+
+.w1-cal__empty { margin: 0; font-size: 13px; color: rgb(140, 140, 145); }
+
+/* --- form --------------------------------------------------------------- */
+
+.w1-cal__form { display: none; margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(0, 0, 0, 0.08); }
+.w1-cal__form[data-open="true"] { display: block; }
+
+.w1-cal__chosen {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: rgb(90, 90, 95);
+}
+
+.w1-cal__chosen strong { color: rgb(32, 35, 46); font-weight: 400; }
+
+.w1-cal__fields { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .w1-cal__fields { grid-template-columns: 1fr 1fr; } }
+
+.w1-cal__field--wide { grid-column: 1 / -1; }
+
+.w1-cal label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgb(120, 120, 125);
+}
+
+.w1-cal input[type="text"],
+.w1-cal input[type="email"],
+.w1-cal input[type="tel"],
+.w1-cal textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  color: rgb(32, 35, 46);
+  transition: border-color 160ms;
+}
+
+.w1-cal input:focus,
+.w1-cal textarea:focus { outline: none; border-color: rgb(32, 35, 46); }
+
+.w1-cal textarea { min-height: 74px; resize: vertical; }
+
+.w1-cal__consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 12px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgb(120, 120, 125);
+}
+
+.w1-cal__consent input { margin-top: 2px; flex: none; }
+
+.w1-cal__submit {
+  margin-top: 16px;
+  padding: 11px 20px;
+  border: 0;
+  border-radius: 30px;
+  background: rgb(32, 35, 46);
+  color: #fff;
+  font-family: "TWK Lausanne 400", "TWK Lausanne 400 Placeholder", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 160ms, opacity 160ms;
+}
+
+.w1-cal__submit:hover { transform: translateY(-1px); }
+.w1-cal__submit:disabled { opacity: 0.4; cursor: default; transform: none; }
+
+.w1-cal__hint { margin: 10px 0 0; font-size: 11px; color: rgb(150, 150, 155); }
+
+@media (prefers-reduced-motion: reduce) {
+  .w1-cal *, .w1-cal { transition: none !important; }
+}
