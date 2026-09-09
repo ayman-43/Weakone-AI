@@ -3,6 +3,27 @@
 The Week One AI website — a static, self-contained build. Every asset is served
 from this folder; the site makes no external network requests at runtime.
 
+![Home](docs/screenshots/01-home.png)
+
+## Screens
+
+| | |
+|---|---|
+| [Services](docs/screenshots/02-services.png) | five sections, with navigation that tracks the section in view |
+| [Industries](docs/screenshots/03-industries.png) | nine verticals, each expanding to its capabilities |
+| [Approach](docs/screenshots/04-approach.png) | the method — four phases, four artifacts |
+| [Insights](docs/screenshots/05-insights.png) | article index |
+| [Article](docs/screenshots/07-insight-article.png) | long-form essay layout |
+| [Contact](docs/screenshots/06-contact.png) | working session, email and voice line |
+
+A scroll-through of the Services page:
+[`docs/media/services-walkthrough.mp4`](docs/media/services-walkthrough.mp4).
+The product explainer behind "Watch the demo" is at
+`assets/weekoneai.com/media/weekone-explainer-720p-v2.mp4` — 720p, 72 seconds.
+
+The home page hero is scroll-driven, so a static capture only catches its first
+frame. Run the site to see it move.
+
 ## Run it
 
 ```bash
@@ -52,6 +73,7 @@ comment explaining what it does and why.
 | `blog-article.css` | Article hero and byline treatment |
 | `insights-nav.css` | Current-page highlight in the header |
 | `demo-video.*` | "Watch the demo" overlay player |
+| `booking.*` | Sends every "Book a working session" to `/contact`, and puts the voice line beside the email address there |
 
 These run after the page hydrates and re-apply themselves if a re-render
 disturbs them, so they survive client-side navigation.
