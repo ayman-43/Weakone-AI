@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Week One AI — portrait creatives</title>
+<!--
+  Portrait post creatives, 1080 x 1350 (4:5) — the tallest frame Meta will show
+  in feed, so it takes the most screen on a phone.
+
+  Six layouts, one per idea. /docs/ads/portrait.html?l=1 … ?l=6
+  ?r=story re-flows the same layout to 1080x1920.
+
+  Brand only: cobalt #4D7EF7 is the single accent, ground #060709, ice #F2F4F8,
+  TWK Lausanne throughout. Depth comes from layering — photograph, cobalt wash,
+  vignette and a fine grain — rather than from extra colour.
+-->
+<style>
+  @font-face { font-family: "TWK 250"; src: url("/assets/cdn/assets/j39DW36fUW6XRxQyKuAmMcGgcg.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 300"; src: url("/assets/cdn/assets/mOV32H8pOWpHxuE0VPZ4YtlFUk.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 400"; src: url("/assets/cdn/assets/YHHz0OzMuyHlfEcb0QAeqAKn5c.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 500"; src: url("/assets/cdn/assets/VyWr5kjjLG1bm4Gf5RUiekAP64.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 600"; src: url("/assets/cdn/assets/mLAggy4ScPG3jmWlBjYKNeVx0A.woff2"); font-display: block; }
+
+  :root {
+    --ground: #060709;
+    --surface: #0C0E12;
+    --ice: #F2F4F8;
+    --cobalt: #4D7EF7;
+    --mid: rgb(150, 156, 176);
+    --faint: rgb(99, 100, 117);
+    --line: rgba(242, 244, 248, .13);
+    --pad: 76px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #111; }
+
+  .ad {
+    position: relative; overflow: hidden;
+    width: 1080px; height: 1350px;
+    background: var(--ground); color: var(--ice);
+    font-family: "TWK 300", sans-serif;
+  }
+  body[data-r="story"] .ad { height: 1920px; }
+
+  /* a fine grain over everything, so flat black reads as paper not void */
+  .grain {
+    position: absolute; inset: 0; z-index: 6; pointer-events: none; opacity: .35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+  /* a cobalt bloom in one corner and a vignette to seat the frame */
+  .bloom {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(58% 40% at 88% 6%, rgba(77,126,247,.30) 0%, rgba(6,7,9,0) 62%),
+      radial-gradient(90% 60% at 50% 108%, rgba(0,0,0,.65) 0%, rgba(6,7,9,0) 60%);
+  }
+
+  .layer { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; }
+
+  .lockup { display: flex; align-items: center; gap: 14px; }
+  .lockup b { font-family: "TWK 600"; font-weight: 400; font-size: 31px; letter-spacing: -.02em; }
+  .lockup b i, .lockup span i { font-style: normal; color: var(--cobalt); }
+  .lockup span { font-family: "TWK 500"; font-size: 17px; letter-spacing: .18em; color: rgb(204,209,233); }
+
+  .idx {
+    position: absolute; top: 0; right: 0;
+    font-family: "TWK 400"; font-size: 15px; letter-spacing: .24em; color: var(--faint);
+  }
+
+  .foot {
+    margin-top: auto; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .foot p { font-family: "TWK 400"; font-size: 24px; letter-spacing: -.01em; color: var(--mid); }
+  .mail {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 15px 26px; border-radius: 40px;
+    background: var(--cobalt); color: #05070d;
+    font-family: "TWK 500"; font-size: 24px; white-space: nowrap;
+  }
+  .mail svg { display: block; }
+
+  .eyebrow { font-family: "TWK 400"; font-size: 16px; letter-spacing: .26em; text-transform: uppercase; color: var(--cobalt); }
+  em { font-style: normal; color: var(--cobalt); }
+
+  .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+
+  /* ============================================ 1 · the number =========== */
+  .p1__top { position: relative; height: 620px; margin: 0 calc(var(--pad) * -1); }
+  .p1__top .photo { opacity: .78; }
+  .p1__top::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(6,7,9,.30) 0%, rgba(6,7,9,.20) 52%, var(--ground) 100%);
+  }
+  .p1__fig {
+    margin-top: -108px; position: relative; z-index: 4;
+    font-family: "TWK 600"; font-weight: 400;
+    font-size: 196px; line-height: .84; letter-spacing: -.06em;
+  }
+  .p1__say { margin-top: 26px; max-width: 17ch; font-size: 34px; line-height: 1.32; color: var(--ice); }
+  .p1__note { margin-top: 20px; max-width: 44ch; font-size: 16px; line-height: 1.55; color: var(--faint); }
+
+  /* ============================================ 2 · the split ============ */
+  .p2 { margin: 0 calc(var(--pad) * -1); flex: 1; display: flex; flex-direction: column; }
+  .p2__a { position: relative; flex: 1; padding: 60px var(--pad) 64px; display: flex; flex-direction: column; }
+  .p2__a .photo { opacity: .72; }
+  .p2__a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,7,9,.30) 0%, rgba(6,7,9,.55) 55%, rgba(6,7,9,.88) 100%); }
+  .p2__a > *:not(.photo) { position: relative; z-index: 3; }
+  .p2__ring { margin-top: auto; font-family: "TWK 400"; font-size: 78px; line-height: 1.12; letter-spacing: -.035em; color: rgb(84, 88, 104); }
+  .p2__b { background: var(--cobalt); color: #05070d; padding: 60px var(--pad) 62px; }
+  .p2__b .mail { margin-top: 34px; background: #05070d; color: var(--ice); }
+  .p2__b h2 { font-family: "TWK 600"; font-weight: 400; font-size: 116px; line-height: .95; letter-spacing: -.05em; }
+  .p2__b p { margin-top: 26px; max-width: 24ch; font-family: "TWK 400"; font-size: 28px; line-height: 1.42; color: rgba(5,7,13,.76); }
+
+  /* ============================================ 3 · four beats =========== */
+  .p3__rows { margin-top: 64px; }
+  .p3__row {
+    display: flex; align-items: baseline; gap: 28px;
+    padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .p3__row:last-child { border-bottom: 1px solid var(--cobalt); border-top-color: var(--cobalt); color: var(--cobalt); }
+  .p3__row b { font-family: "TWK 400"; font-weight: 400; font-size: 17px; letter-spacing: .2em; color: var(--faint); width: 54px; flex: none; }
+  .p3__row:last-child b { color: var(--cobalt); }
+  .p3__row span { font-family: "TWK 600"; font-weight: 400; font-size: 78px; letter-spacing: -.045em; line-height: 1; }
+  .p3__lede { margin-top: 44px; max-width: 30ch; font-size: 27px; line-height: 1.45; color: var(--mid); }
+
+  /* ============================================ 4 · the calendar ========= */
+  .p4 h2 { margin-top: 60px; font-family: "TWK 400"; font-weight: 400; font-size: 96px; line-height: 1.0; letter-spacing: -.045em; }
+  .p4__card {
+    margin-top: 52px; padding: 38px;
+    border: 1px solid var(--line); border-radius: 22px;
+    background: linear-gradient(180deg, rgba(20,23,32,.92), rgba(10,12,16,.92));
+    box-shadow: 0 30px 90px rgba(0,0,0,.55);
+  }
+  .p4__card h3 { font-family: "TWK 400"; font-weight: 400; font-size: 24px; margin-bottom: 24px; }
+  .p4__card h3 span { color: var(--faint); }
+  .p4__days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 9px; }
+  .p4__days i {
+    font-style: normal; aspect-ratio: 1; display: grid; place-items: center;
+    border-radius: 10px; font-family: "TWK 400"; font-size: 19px; color: rgb(124,128,144);
+  }
+  .p4__days i.on { background: var(--cobalt); color: #05070d; box-shadow: 0 0 0 6px rgba(77,126,247,.16); }
+  .p4__days i.dim { color: rgb(56,58,68); }
+  .p4__slot {
+    margin-top: 26px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(77,126,247,.12); border: 1px solid rgba(77,126,247,.45);
+    font-family: "TWK 400"; font-size: 21px; color: var(--cobalt);
+  }
+
+  /* ============================================ 5 · the waveform ========= */
+  .p5 h2 { margin-top: 66px; font-family: "TWK 400"; font-weight: 400; font-size: 100px; line-height: 1.0; letter-spacing: -.045em; max-width: 12ch; }
+  .p5__bars { margin-top: 58px; height: 300px; display: flex; align-items: flex-end; gap: 9px; }
+  .p5__bars b { flex: 1; border-radius: 4px; background: linear-gradient(180deg, var(--cobalt), rgba(77,126,247,.10)); }
+  .p5 p { margin-top: 48px; max-width: 28ch; font-size: 28px; line-height: 1.45; color: var(--mid); }
+
+  /* ============================================ 6 · the ledger =========== */
+  .p6 h2 { margin-top: 60px; font-family: "TWK 400"; font-weight: 400; font-size: 92px; line-height: 1.02; letter-spacing: -.045em; }
+  .p6__card {
+    margin-top: 50px; padding: 34px 36px;
+    border: 1px solid var(--line); border-radius: 22px;
+    background: linear-gradient(180deg, rgba(20,23,32,.9), rgba(10,12,16,.9));
+    box-shadow: 0 30px 90px rgba(0,0,0,.5);
+  }
+  .p6__row { display: flex; justify-content: space-between; align-items: baseline; padding: 19px 0; border-bottom: 1px solid var(--line); font-size: 26px; }
+  .p6__row span:first-child { color: rgb(120,124,140); text-decoration: line-through; text-decoration-color: rgba(120,124,140,.45); }
+  .p6__row span:last-child { font-family: "TWK 400"; color: rgb(150,156,176); }
+  .p6__row--total { border-bottom: 0; padding-top: 26px; }
+  .p6__row--total span:first-child { color: var(--ice); text-decoration: none; font-family: "TWK 400"; }
+  .p6__row--total span:last-child { color: var(--cobalt); font-family: "TWK 600"; font-size: 44px; }
+  .p6 p { margin-top: 34px; max-width: 30ch; font-size: 26px; line-height: 1.45; color: var(--mid); }
+
+  /* card layouts: let the body take the space between header and footer */
+  .p3, .p4, .p5, .p6 { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .p3 > :first-child, .p4 > :first-child, .p5 > :first-child, .p6 > :first-child { margin-top: 0; }
+
+  .pad { padding: 66px var(--pad) 62px; }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="bloom"></div>
+  <div class="layer pad" id="stage"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+  var MAIL = '<span class="mail"><svg width="22" height="22" viewBox="0 0 14 14"><path d="M 0.5 3 C 0.5 1.895 1.395 1 2.5 1 L 11.5 1 C 12.605 1 13.5 1.895 13.5 3 L 13.5 4.25 L 7.894 7.053 C 7.331 7.334 6.669 7.334 6.106 7.053 L 0.5 4.25 Z M 13.5 11 C 13.5 12.105 12.605 13 11.5 13 L 2.5 13 C 1.395 13 0.5 12.105 0.5 11 L 0.5 5.357 L 5.838 9.17 C 6.533 9.666 7.467 9.666 8.162 9.17 L 13.5 5.357 Z" fill="currentColor"></path></svg>info@weekoneai.com</span>';
+
+  function head(n) {
+    return '<div style="position:relative"><div class="lockup"><b>W<i>1</i></b>' +
+      '<span>WEEK ONE <i>AI</i></span></div><span class="idx">' + n + ' / 06</span></div>';
+  }
+  function foot(t) { return '<div class="foot"><p>' + t + '</p>' + MAIL + '</div>'; }
+
+  var PHONE = '/assets/weekoneai.com/media/insight-missed-call.jpg';
+  var BOOK = 'Book a 30-minute working session';
+
+  var L = {
+    1: function () {
+      return head('01') +
+        '<div class="p1__top"><div class="photo" style="background-image:url(' + PHONE + ')"></div></div>' +
+        '<p class="p1__fig">$63,000</p>' +
+        '<p class="p1__say">a year in calls that rang&nbsp;out.</p>' +
+        '<p class="p1__note">Illustrative: 300 calls a month, 20% unanswered, $350 average ticket.</p>' +
+        foot(BOOK);
+    },
+    2: function () {
+      return head('02') +
+        '<div class="p2">' +
+          '<div class="p2__a"><div class="photo" style="background-image:url(' + PHONE + ')"></div>' +
+            '<p class="eyebrow" style="margin-bottom:30px">After hours · on the job · peak volume</p>' +
+            '<p class="p2__ring">Ring.<br>Ring.<br>Ring.</p></div>' +
+          '<div class="p2__b"><h2>We pick&nbsp;up.</h2>' +
+            '<p>Every call answered, qualified and booked — including the ones that come in at nine at night.</p>' + MAIL + '</div>' +
+        '</div>';
+    },
+    3: function () {
+      var beats = [['01', 'We answer'], ['02', 'We qualify'], ['03', 'We book'], ['04', 'You work']];
+      return head('03') +
+        '<div class="p3"><p class="eyebrow">An AI front office</p>' +
+        '<div class="p3__rows">' + beats.map(function (b) {
+          return '<div class="p3__row"><b>' + b[0] + '</b><span>' + b[1] + '</span></div>';
+        }).join('') + '</div>' +
+        '<p class="p3__lede">For painting and trades, HVAC, roofing, legal, healthcare and real estate — wherever the phone is the front door.</p></div>' +
+        foot(BOOK);
+    },
+    4: function () {
+      var cells = '';
+      for (var d = 1; d <= 28; d++) {
+        var cls = d === 7 ? 'on' : (d % 7 === 6 || d % 7 === 0 ? 'dim' : '');
+        cells += '<i class="' + cls + '">' + d + '</i>';
+      }
+      return head('04') +
+        '<div class="p4"><h2>Live in <em>week one.</em><br>Not next quarter.</h2>' +
+          '<div class="p4__card"><h3>Week one <span>· go-live</span></h3>' +
+            '<div class="p4__days">' + cells + '</div>' +
+            '<div class="p4__slot">Day 07 — system live in production</div></div></div>' +
+        foot(BOOK);
+    },
+    5: function () {
+      var h = [16, 32, 58, 39, 74, 92, 52, 28, 64, 86, 44, 20, 56, 80, 100, 60, 34, 68, 88, 46, 24, 54, 78, 42, 18, 62, 86, 50];
+      var bars = h.map(function (v) { return '<b style="height:' + v + '%"></b>'; }).join('');
+      return head('05') +
+        '<div class="p5"><h2>Your phone rings. <em>Nobody answers.</em></h2>' +
+          '<div class="p5__bars">' + bars + '</div>' +
+          '<p>A voice line that picks up every time — after hours, on the job, and when three calls land at once.</p></div>' +
+        foot(BOOK);
+    },
+    6: function () {
+      var rows = [['After-hours calls', 'rings out'], ['Leads chased by hand', 'goes cold'],
+        ['Follow-up nobody sent', 'forgotten'], ['Estimates never booked', 'lost']]
+        .map(function (r) { return '<div class="p6__row"><span>' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('');
+      return head('06') +
+        '<div class="p6"><h2>The leaks you<br>stopped counting.</h2>' +
+          '<div class="p6__card">' + rows +
+            '<div class="p6__row p6__row--total"><span>Closed in week one</span><span>4 / 4</span></div></div>' +
+          '<p>Every service business has the same four. We close them in the first week.</p></div>' +
+        foot(BOOK);
+    }
+  };
+
+  var q = new URLSearchParams(location.search);
+  document.body.setAttribute('data-r', q.get('r') || 'feed');
+  var l = q.get('l') || '1';
+  var stage = document.getElementById('stage');
+  stage.innerHTML = L[l]();
+  if (l === '2') stage.style.padding = '66px 76px 0';   // layout 2 runs to the edge
+</script>
+</body>
+</html>

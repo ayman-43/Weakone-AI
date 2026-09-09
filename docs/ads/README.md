@@ -76,3 +76,31 @@ chrome --headless=new --hide-scrollbars --window-size=1200,630 \
 Layouts 1 and 2 lead with the problem, 3 and 5 with the mechanism, 4 with speed,
 6 with the audit. Run one from each group first — they fail differently, which
 is what tells you something.
+
+---
+
+## Portrait posts — 1080×1350 (4:5)
+
+In `portrait/`. The tallest frame Meta shows in feed, so it takes the most
+screen on a phone — usually the strongest placement to start with.
+
+Same six ideas as the Facebook set, composed for the vertical frame rather than
+rescaled. Depth here comes from layering — photograph, a cobalt bloom, a
+vignette and a fine film grain over everything — instead of from more colour.
+
+| | Idea | The composition |
+|---|---|---|
+| 01 | `$63,000` a year in calls that rang out | full-bleed photograph, the number straddling the cut |
+| 02 | "Ring. Ring. Ring." → **We pick up.** | dark panel over a cobalt one, split hard across the frame |
+| 03 | We answer / We qualify / We book / You work | four ruled rows, the last in cobalt |
+| 04 | Live in week one. Not next quarter. | a raised calendar card, day 07 glowing |
+| 05 | Your phone rings. Nobody answers. | a cobalt waveform through the middle |
+| 06 | The leaks you stopped counting | a ledger card, each line struck through |
+
+`portrait.html` is the source — `?l=1` … `?l=6`, and `?r=story` re-flows the
+same layout to 1080×1920 for Stories and Reels.
+
+```bash
+chrome --headless=new --hide-scrollbars --window-size=1080,1350 \
+  --screenshot=out.png "http://localhost:8099/docs/ads/portrait.html?l=4"
+```
