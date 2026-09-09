@@ -119,8 +119,15 @@ upload it; it crops the same file twice:
 
 So every readable element is inside the band both crops keep — rows 150–774 of
 924 — and out of the bottom-left corner, where the profile picture and the page
-buttons sit *on top of* the cover. The waveform and the contact chips take the
-right half for that reason; the empty lower-left is deliberate.
+buttons sit *on top of* the cover. That empty lower-left corner is deliberate.
+
+The right half carries a glimpse of the product actually working: a live call,
+the caller's question, the answer, and the job on the calendar — the whole
+promise in one card. Behind it sits the company's own product render
+(`weekone-bg-poster.jpg`), feathered out to the left with a mask so the headline
+keeps clean ground. Depth is layered rather than coloured — render, hairline
+grid, cobalt bloom, vignette, film grain — the same treatment as the portrait
+set.
 
 Source is `cover.html`. Add `?guides=1` to draw the safe band and the profile
 picture's footprint before you change anything.

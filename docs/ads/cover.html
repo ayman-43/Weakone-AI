@@ -6,15 +6,17 @@
 <!--
   Facebook Page cover, 1640 x 924.
 
-  Facebook shows the cover at two different crops:
-    desktop  820 x 312  (2.63:1) — takes a centre band, cuts top and bottom
-    mobile   640 x 360  (1.78:1) — shows almost the full height
+  Facebook crops the same upload twice:
+    desktop  820 x 312  (2.63:1) — a centre band; top and bottom are cut
+    mobile   640 x 360  (1.78:1) — nearly the full height
 
-  So everything that matters sits inside a centred band 624px tall (rows 150-774
-  of 924), and clear of the bottom-left, where the profile picture and the page
-  buttons sit on top of the cover.
+  So everything readable sits inside rows 150-774, and clear of the bottom-left,
+  where the profile picture and the page buttons sit on top of the cover.
 
-  ?guides=1 draws the safe area and the profile-picture footprint.
+  Depth is layered, not coloured: the company's own product render behind a
+  cobalt bloom, a glass card over it, a vignette, and a fine grain on top.
+
+  ?guides=1 draws the safe band and the profile-picture footprint.
 -->
 <style>
   @font-face { font-family: "TWK 300"; src: url("/assets/cdn/assets/mOV32H8pOWpHxuE0VPZ4YtlFUk.woff2"); font-display: block; }
@@ -27,8 +29,8 @@
     --ice: #F2F4F8;
     --cobalt: #4D7EF7;
     --mid: rgb(150, 156, 176);
-    --faint: rgb(99, 100, 117);
-    --line: rgba(242, 244, 248, .13);
+    --faint: rgb(103, 106, 124);
+    --line: rgba(242, 244, 248, .12);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,67 +43,150 @@
     font-family: "TWK 300", sans-serif;
   }
 
-  .bloom {
-    position: absolute; inset: 0; z-index: 1;
-    background:
-      radial-gradient(48% 62% at 84% 46%, rgba(77,126,247,.26) 0%, rgba(6,7,9,0) 66%),
-      radial-gradient(70% 90% at 8% 50%, rgba(6,7,9,.55) 0%, rgba(6,7,9,0) 70%);
+  /* --- layer 1: the company's own product render, feathered to the left --- */
+  .plate {
+    position: absolute; z-index: 1; inset: 0;
+    background: url("/assets/weekoneai.com/media/weekone-bg-poster.jpg") center right / 118% auto no-repeat;
+    opacity: .62;
+    -webkit-mask-image: linear-gradient(90deg, transparent 26%, rgba(0,0,0,.55) 46%, #000 70%);
+            mask-image: linear-gradient(90deg, transparent 26%, rgba(0,0,0,.55) 46%, #000 70%);
   }
+
+  /* --- layer 2: hairline grid, so the black reads as a surface --- */
+  .grid {
+    position: absolute; z-index: 2; inset: 0; opacity: .5;
+    background-image:
+      linear-gradient(rgba(242,244,248,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,244,248,.045) 1px, transparent 1px);
+    background-size: 82px 82px;
+    -webkit-mask-image: radial-gradient(60% 70% at 30% 50%, #000 0%, transparent 78%);
+            mask-image: radial-gradient(60% 70% at 30% 50%, #000 0%, transparent 78%);
+  }
+
+  /* --- layer 3: cobalt bloom + vignette --- */
+  .bloom {
+    position: absolute; z-index: 3; inset: 0;
+    background:
+      radial-gradient(46% 64% at 72% 40%, rgba(77,126,247,.34) 0%, rgba(6,7,9,0) 66%),
+      radial-gradient(38% 52% at 96% 88%, rgba(77,126,247,.16) 0%, rgba(6,7,9,0) 70%),
+      radial-gradient(78% 96% at 4% 50%, rgba(6,7,9,.92) 0%, rgba(6,7,9,.30) 52%, rgba(6,7,9,0) 76%),
+      radial-gradient(120% 78% at 50% 112%, rgba(0,0,0,.72) 0%, rgba(6,7,9,0) 58%);
+  }
+
   .grain {
-    position: absolute; inset: 0; z-index: 6; opacity: .32; pointer-events: none;
+    position: absolute; inset: 0; z-index: 9; opacity: .30; pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
   }
 
-  /* the waveform, right of centre and out of every crop's way */
-  .wave {
-    position: absolute; z-index: 2;
-    right: 96px; top: 380px; transform: none;
-    width: 620px; height: 240px;
-    display: flex; align-items: center; gap: 9px; opacity: .85;
-  }
-  .wave b {
-    flex: 1; border-radius: 4px;
-    background: linear-gradient(180deg, rgba(77,126,247,.15), var(--cobalt), rgba(77,126,247,.15));
-  }
+  /* ================= the safe band ================= */
+  .safe { position: absolute; z-index: 5; left: 0; right: 0; top: 150px; height: 624px; }
 
-  /* everything readable lives here — the band both crops keep */
-  .safe {
-    position: absolute; z-index: 4;
-    left: 0; right: 0; top: 150px; height: 624px;
-    display: flex; flex-direction: column; justify-content: flex-start;
-    padding: 26px 0 0 108px;
-  }
+  /* ---- left column: the message ---- */
+  .say { position: absolute; left: 108px; top: 22px; width: 700px; }
 
-  .lockup { display: flex; align-items: center; gap: 15px; margin-bottom: 34px; }
-  .lockup b { font-family: "TWK 600"; font-weight: 400; font-size: 34px; letter-spacing: -.02em; }
-  .lockup b i, .lockup span i { font-style: normal; color: var(--cobalt); }
-  .lockup span { font-family: "TWK 500"; font-size: 18px; letter-spacing: .18em; color: rgb(204,209,233); }
+  .lockup { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+  .mark {
+    width: 46px; height: 46px; border-radius: 13px; flex: none;
+    background: linear-gradient(150deg, #6f96ff, var(--cobalt) 58%, #2f5fdd);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.16) inset, 0 10px 30px rgba(77,126,247,.42);
+    display: grid; place-items: center;
+    font-family: "TWK 600"; font-size: 20px; color: #05070d; letter-spacing: -.02em;
+  }
+  .wordmark { font-family: "TWK 500"; font-size: 17px; letter-spacing: .2em; color: rgb(208, 213, 236); }
+  .wordmark i { font-style: normal; color: var(--cobalt); }
 
   h1 {
     font-family: "TWK 400"; font-weight: 400;
-    font-size: 92px; line-height: 1.0; letter-spacing: -.045em;
-    max-width: 15ch;
+    font-size: 84px; line-height: .98; letter-spacing: -.045em;
   }
-  h1 em { font-style: normal; color: var(--cobalt); }
-
-  .sub { margin-top: 26px; max-width: 42ch; font-size: 25px; line-height: 1.45; color: var(--mid); }
-
-  .strip {
-    position: absolute; z-index: 5;
-    right: 96px; bottom: 18px;
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(96deg, #8fb0ff 0%, var(--cobalt) 46%, #7ea3ff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
+
+  .sub { margin-top: 24px; width: 560px; font-size: 23px; line-height: 1.5; color: var(--mid); }
+
+  /* three proof points on a hairline rule */
+  .proof {
+    margin-top: 30px; display: flex; align-items: stretch;
+    border-top: 1px solid var(--line); padding-top: 22px; width: 700px;
+  }
+  .proof div { flex: 1; padding-right: 22px; }
+  .proof div + div { border-left: 1px solid var(--line); padding-left: 26px; }
+  .proof b {
+    display: block; font-family: "TWK 500"; font-weight: 400;
+    font-size: 30px; letter-spacing: -.03em; color: var(--ice);
+  }
+  .proof b u { text-decoration: none; color: var(--cobalt); }
+  .proof span { display: block; margin-top: 7px; font-size: 15px; line-height: 1.35; color: var(--faint); }
+
+  /* ---- right: a glimpse of the product doing the job ---- */
+  .card {
+    position: absolute; right: 104px; top: 18px; width: 556px;
+    background: linear-gradient(168deg, rgba(24,28,38,.94), rgba(11,13,19,.92));
+    border: 1px solid rgba(242,244,248,.14); border-radius: 24px;
+    box-shadow: 0 42px 90px rgba(0,0,0,.62), 0 0 0 1px rgba(77,126,247,.10),
+                0 -1px 0 rgba(255,255,255,.07) inset;
+    padding: 26px 28px 24px;
+    transform: rotate(-1.1deg);
+  }
+  .card__top { display: flex; align-items: center; gap: 11px; padding-bottom: 18px; border-bottom: 1px solid rgba(242,244,248,.09); }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #43d17f; box-shadow: 0 0 0 5px rgba(67,209,127,.16); flex: none; }
+  .card__top b { font-family: "TWK 500"; font-weight: 400; font-size: 15px; letter-spacing: .13em; color: rgb(214, 219, 238); }
+  .card__top span { margin-left: auto; font-family: "TWK 400"; font-size: 15px; color: var(--faint); }
+
+  .wave { display: flex; align-items: center; gap: 5px; height: 62px; margin: 20px 0 22px; }
+  .wave b { flex: 1; border-radius: 3px; background: linear-gradient(180deg, rgba(77,126,247,.22), var(--cobalt), rgba(77,126,247,.22)); }
+
+  .line { display: flex; gap: 12px; margin-bottom: 13px; }
+  .who {
+    flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+    font-family: "TWK 500"; font-size: 12px; letter-spacing: .04em;
+    background: rgba(242,244,248,.07); color: rgb(178, 184, 206); border: 1px solid rgba(242,244,248,.08);
+  }
+  .who--w1 { background: rgba(77,126,247,.18); color: #a9c2ff; border-color: rgba(77,126,247,.34); }
+  .said { font-family: "TWK 400"; font-size: 17px; line-height: 1.45; color: rgb(196, 202, 222); padding-top: 5px; }
+
+  .booked {
+    margin-top: 20px; display: flex; align-items: center; gap: 13px;
+    background: rgba(77,126,247,.13); border: 1px solid rgba(77,126,247,.32);
+    border-radius: 15px; padding: 15px 18px;
+  }
+  .tick {
+    flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--cobalt);
+    display: grid; place-items: center; font-size: 14px; color: #05070d; font-family: "TWK 600";
+  }
+  .booked b { font-family: "TWK 500"; font-weight: 400; font-size: 17px; color: var(--ice); }
+  .booked span { margin-left: auto; font-family: "TWK 400"; font-size: 15px; color: #9db9ff; }
+
+  /* a small marker pinned to the card, for depth */
+  .pin {
+    position: absolute; left: -44px; bottom: -26px; z-index: 2;
+    background: rgba(12,14,18,.95); border: 1px solid rgba(242,244,248,.14);
+    border-radius: 12px; padding: 11px 16px; transform: rotate(-1.1deg);
+    box-shadow: 0 18px 40px rgba(0,0,0,.55);
+    font-family: "TWK 400"; font-size: 15px; color: rgb(196, 202, 222); white-space: nowrap;
+  }
+  .pin i { font-style: normal; color: var(--cobalt); font-family: "TWK 500"; }
+
+  /* ---- contact, bottom of the band and clear of the profile picture ---- */
+  .strip { position: absolute; right: 104px; bottom: 4px; display: flex; align-items: center; gap: 13px; }
   .chip {
     padding: 12px 22px; border: 1px solid var(--line); border-radius: 40px;
-    font-family: "TWK 400"; font-size: 19px; color: rgb(196, 202, 222);
+    font-family: "TWK 400"; font-size: 18px; color: rgb(196, 202, 222);
+    background: rgba(10,12,16,.55);
   }
-  .chip--solid { background: var(--cobalt); border-color: var(--cobalt); color: #05070d; font-family: "TWK 500"; }
+  .chip--solid {
+    background: var(--cobalt); border-color: var(--cobalt); color: #05070d;
+    font-family: "TWK 500"; box-shadow: 0 10px 30px rgba(77,126,247,.35);
+  }
 
   /* guides, for checking the crops */
   body[data-guides="1"] .safe { outline: 2px dashed rgba(77,126,247,.55); }
   body[data-guides="1"] .cover::after {
-    content: "profile picture"; position: absolute; z-index: 9;
-    left: 40px; bottom: 0; width: 340px; height: 250px;
+    content: "profile picture"; position: absolute; z-index: 10;
+    left: 32px; bottom: 0; width: 352px; height: 250px;
     border: 2px dashed rgba(255,90,90,.6); color: rgba(255,120,120,.9);
     font-family: "TWK 400"; font-size: 15px; display: grid; place-items: center;
   }
@@ -109,13 +194,44 @@
 </head>
 <body>
 <div class="cover">
+  <div class="plate"></div>
+  <div class="grid"></div>
   <div class="bloom"></div>
-  <div class="wave" id="wave"></div>
 
   <div class="safe">
-    <div class="lockup"><b>W<i>1</i></b><span>WEEK ONE <i>AI</i></span></div>
-    <h1>AI systems live in <em>week one.</em></h1>
-    <p class="sub">An AI front office for service businesses — every call answered, every lead followed up, every job on the calendar.</p>
+    <div class="say">
+      <div class="lockup">
+        <span class="mark">W1</span>
+        <span class="wordmark">WEEK ONE <i>AI</i></span>
+      </div>
+      <h1>Your phone stops<br>going to <em>voicemail.</em></h1>
+      <p class="sub">An AI front office for service businesses — every call answered, every job on the calendar.</p>
+      <div class="proof">
+        <div><b><u>24/7</u></b><span>Nights, weekends, holidays</span></div>
+        <div><b>1 ring</b><span>Before a caller hangs up</span></div>
+        <div><b>Week <u>one</u></b><span>Live in days, not quarters</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__top">
+        <span class="dot"></span><b>LIVE CALL</b><span>+1 (614) 555-0142</span>
+      </div>
+
+      <div class="wave" id="wave"></div>
+
+      <div class="line"><span class="who">CX</span><span class="said">&ldquo;Hi &mdash; my water heater is leaking, can anyone come out?&rdquo;</span></div>
+      <div class="line"><span class="who who--w1">W1</span><span class="said">&ldquo;I can get a tech to you tomorrow at 10:30. Shall I book it?&rdquo;</span></div>
+
+      <div class="booked">
+        <span class="tick">&#10003;</span>
+        <b>Booked &mdash; Tue, 10:30 AM</b>
+        <span>added to calendar</span>
+      </div>
+
+      <div class="pin">Answered in <i>0.8s</i> &middot; no one missed it</div>
+    </div>
+
     <div class="strip">
       <span class="chip chip--solid">info@weekoneai.com</span>
       <span class="chip">+1 614-634-9644</span>
@@ -127,7 +243,7 @@
 </div>
 
 <script>
-  var h = [22, 48, 30, 66, 40, 84, 54, 96, 62, 38, 74, 46, 88, 58, 34, 70, 44, 92, 52, 28, 64, 42, 80, 50, 26, 60, 36, 72];
+  var h = [26, 54, 34, 72, 44, 90, 58, 100, 66, 40, 78, 48, 92, 62, 36, 74, 46, 96, 56, 30, 68, 44, 84, 52, 28, 64, 38, 76, 48, 88];
   document.getElementById('wave').innerHTML =
     h.map(function (v) { return '<b style="height:' + v + '%"></b>'; }).join('');
   var q = new URLSearchParams(location.search);
