@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Week One AI — Facebook cover</title>
+<!--
+  Facebook Page cover, 1640 x 924.
+
+  Facebook shows the cover at two different crops:
+    desktop  820 x 312  (2.63:1) — takes a centre band, cuts top and bottom
+    mobile   640 x 360  (1.78:1) — shows almost the full height
+
+  So everything that matters sits inside a centred band 624px tall (rows 150-774
+  of 924), and clear of the bottom-left, where the profile picture and the page
+  buttons sit on top of the cover.
+
+  ?guides=1 draws the safe area and the profile-picture footprint.
+-->
+<style>
+  @font-face { font-family: "TWK 300"; src: url("/assets/cdn/assets/mOV32H8pOWpHxuE0VPZ4YtlFUk.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 400"; src: url("/assets/cdn/assets/YHHz0OzMuyHlfEcb0QAeqAKn5c.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 500"; src: url("/assets/cdn/assets/VyWr5kjjLG1bm4Gf5RUiekAP64.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 600"; src: url("/assets/cdn/assets/mLAggy4ScPG3jmWlBjYKNeVx0A.woff2"); font-display: block; }
+
+  :root {
+    --ground: #060709;
+    --ice: #F2F4F8;
+    --cobalt: #4D7EF7;
+    --mid: rgb(150, 156, 176);
+    --faint: rgb(99, 100, 117);
+    --line: rgba(242, 244, 248, .13);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #111; }
+
+  .cover {
+    position: relative; overflow: hidden;
+    width: 1640px; height: 924px;
+    background: var(--ground); color: var(--ice);
+    font-family: "TWK 300", sans-serif;
+  }
+
+  .bloom {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(48% 62% at 84% 46%, rgba(77,126,247,.26) 0%, rgba(6,7,9,0) 66%),
+      radial-gradient(70% 90% at 8% 50%, rgba(6,7,9,.55) 0%, rgba(6,7,9,0) 70%);
+  }
+  .grain {
+    position: absolute; inset: 0; z-index: 6; opacity: .32; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+
+  /* the waveform, right of centre and out of every crop's way */
+  .wave {
+    position: absolute; z-index: 2;
+    right: 96px; top: 380px; transform: none;
+    width: 620px; height: 240px;
+    display: flex; align-items: center; gap: 9px; opacity: .85;
+  }
+  .wave b {
+    flex: 1; border-radius: 4px;
+    background: linear-gradient(180deg, rgba(77,126,247,.15), var(--cobalt), rgba(77,126,247,.15));
+  }
+
+  /* everything readable lives here — the band both crops keep */
+  .safe {
+    position: absolute; z-index: 4;
+    left: 0; right: 0; top: 150px; height: 624px;
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding: 26px 0 0 108px;
+  }
+
+  .lockup { display: flex; align-items: center; gap: 15px; margin-bottom: 34px; }
+  .lockup b { font-family: "TWK 600"; font-weight: 400; font-size: 34px; letter-spacing: -.02em; }
+  .lockup b i, .lockup span i { font-style: normal; color: var(--cobalt); }
+  .lockup span { font-family: "TWK 500"; font-size: 18px; letter-spacing: .18em; color: rgb(204,209,233); }
+
+  h1 {
+    font-family: "TWK 400"; font-weight: 400;
+    font-size: 92px; line-height: 1.0; letter-spacing: -.045em;
+    max-width: 15ch;
+  }
+  h1 em { font-style: normal; color: var(--cobalt); }
+
+  .sub { margin-top: 26px; max-width: 42ch; font-size: 25px; line-height: 1.45; color: var(--mid); }
+
+  .strip {
+    position: absolute; z-index: 5;
+    right: 96px; bottom: 18px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .chip {
+    padding: 12px 22px; border: 1px solid var(--line); border-radius: 40px;
+    font-family: "TWK 400"; font-size: 19px; color: rgb(196, 202, 222);
+  }
+  .chip--solid { background: var(--cobalt); border-color: var(--cobalt); color: #05070d; font-family: "TWK 500"; }
+
+  /* guides, for checking the crops */
+  body[data-guides="1"] .safe { outline: 2px dashed rgba(77,126,247,.55); }
+  body[data-guides="1"] .cover::after {
+    content: "profile picture"; position: absolute; z-index: 9;
+    left: 40px; bottom: 0; width: 340px; height: 250px;
+    border: 2px dashed rgba(255,90,90,.6); color: rgba(255,120,120,.9);
+    font-family: "TWK 400"; font-size: 15px; display: grid; place-items: center;
+  }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="bloom"></div>
+  <div class="wave" id="wave"></div>
+
+  <div class="safe">
+    <div class="lockup"><b>W<i>1</i></b><span>WEEK ONE <i>AI</i></span></div>
+    <h1>AI systems live in <em>week one.</em></h1>
+    <p class="sub">An AI front office for service businesses — every call answered, every lead followed up, every job on the calendar.</p>
+    <div class="strip">
+      <span class="chip chip--solid">info@weekoneai.com</span>
+      <span class="chip">+1 614-634-9644</span>
+      <span class="chip">weekoneai.com</span>
+    </div>
+  </div>
+
+  <div class="grain"></div>
+</div>
+
+<script>
+  var h = [22, 48, 30, 66, 40, 84, 54, 96, 62, 38, 74, 46, 88, 58, 34, 70, 44, 92, 52, 28, 64, 42, 80, 50, 26, 60, 36, 72];
+  document.getElementById('wave').innerHTML =
+    h.map(function (v) { return '<b style="height:' + v + '%"></b>'; }).join('');
+  var q = new URLSearchParams(location.search);
+  document.body.setAttribute('data-guides', q.get('guides') || '0');
+</script>
+</body>
+</html>

@@ -104,3 +104,31 @@ same layout to 1080×1920 for Stories and Reels.
 chrome --headless=new --hide-scrollbars --window-size=1080,1350 \
   --screenshot=out.png "http://localhost:8099/docs/ads/portrait.html?l=4"
 ```
+
+---
+
+## Facebook Page cover — 1640×924
+
+`cover/facebook-cover-1640x924.png`. Facebook does not show a cover the way you
+upload it; it crops the same file twice:
+
+| | Crop | What it keeps |
+|---|---|---|
+| Desktop | 820×312 (2.63:1) | a centre band — top and bottom are cut |
+| Mobile | 640×360 (1.78:1) | nearly the full height |
+
+So every readable element is inside the band both crops keep — rows 150–774 of
+924 — and out of the bottom-left corner, where the profile picture and the page
+buttons sit *on top of* the cover. The waveform and the contact chips take the
+right half for that reason; the empty lower-left is deliberate.
+
+Source is `cover.html`. Add `?guides=1` to draw the safe band and the profile
+picture's footprint before you change anything.
+
+```bash
+chrome --headless=new --hide-scrollbars --window-size=1640,924 \
+  --screenshot=cover/facebook-cover-1640x924.png \
+  "http://localhost:8099/docs/ads/cover.html"
+```
+
+Upload the 1640×924 file as-is — do not pre-crop it, or Facebook crops the crop.
