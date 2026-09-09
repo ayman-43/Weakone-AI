@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Week One AI — ad creatives</title>
+<!--
+  Source for the Meta ad creatives.
+
+  Serve the site and open /docs/ads/?v=a&f=feed to preview one. Rendering is done
+  by screenshotting this page at the exact ad size, so what you see is the file.
+
+    v = a | b | c        which concept
+    f = square           1080 x 1080   feed
+        portrait         1080 x 1350   feed (best performing)
+        story            1080 x 1920   stories / reels
+
+  Palette and type are the brand's own: cobalt #4D7EF7 is the only accent,
+  ground #060709, ice #F2F4F8, TWK Lausanne throughout.
+-->
+<style>
+  @font-face { font-family: "TWK Lausanne 250"; src: url("/assets/cdn/assets/j39DW36fUW6XRxQyKuAmMcGgcg.woff2"); font-display: block; }
+  @font-face { font-family: "TWK Lausanne 300"; src: url("/assets/cdn/assets/mOV32H8pOWpHxuE0VPZ4YtlFUk.woff2"); font-display: block; }
+  @font-face { font-family: "TWK Lausanne 400"; src: url("/assets/cdn/assets/YHHz0OzMuyHlfEcb0QAeqAKn5c.woff2"); font-display: block; }
+  @font-face { font-family: "TWK Lausanne 500"; src: url("/assets/cdn/assets/VyWr5kjjLG1bm4Gf5RUiekAP64.woff2"); font-display: block; }
+  @font-face { font-family: "TWK Lausanne 600"; src: url("/assets/cdn/assets/mLAggy4ScPG3jmWlBjYKNeVx0A.woff2"); font-display: block; }
+
+  :root {
+    --ground: #060709;
+    --surface: #0C0E12;
+    --ice: #F2F4F8;
+    --cobalt: #4D7EF7;
+    --mid: rgb(150, 156, 176);
+    --faint: rgb(99, 100, 117);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #111; }
+
+  .ad {
+    position: relative;
+    overflow: hidden;
+    background: var(--ground);
+    color: var(--ice);
+    font-family: "TWK Lausanne 300", sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* the photograph, sunk so type stays legible */
+  .ad__bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: .5;
+  }
+  .ad__veil {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 80% at 78% 8%, rgba(77,126,247,.20) 0%, rgba(6,7,9,0) 55%),
+      linear-gradient(180deg, rgba(6,7,9,.62) 0%, rgba(6,7,9,.80) 42%, rgba(6,7,9,.97) 100%);
+  }
+
+  /* corner marks, as the site uses */
+  .mark { position: absolute; font-family: "TWK Lausanne 400", monospace; font-size: 22px; color: rgba(242,244,248,.28); }
+  .mark--tl { top: 44px; left: 48px; }
+  .mark--tr { top: 44px; right: 48px; }
+  .mark--bl { bottom: 44px; left: 48px; }
+  .mark--br { bottom: 44px; right: 48px; }
+
+  .ad__inner {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 92px 88px;
+  }
+
+  /* --- logo ------------------------------------------------------------ */
+  .logo { display: flex; align-items: center; gap: 16px; }
+  .logo__mark {
+    font-family: "TWK Lausanne 600", sans-serif;
+    font-size: 34px; letter-spacing: -.02em; line-height: 1;
+  }
+  .logo__mark i { font-style: normal; color: var(--cobalt); }
+  .logo__word {
+    font-family: "TWK Lausanne 500", sans-serif;
+    font-size: 19px; letter-spacing: .16em; line-height: 1;
+    color: rgb(204, 209, 233);
+  }
+  .logo__word i { font-style: normal; color: var(--cobalt); }
+
+  /* --- type ------------------------------------------------------------ */
+  .eyebrow {
+    margin-top: 64px;
+    font-family: "TWK Lausanne 400", monospace;
+    font-size: 19px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--cobalt);
+  }
+
+  h1 {
+    margin-top: 34px;
+    font-family: "TWK Lausanne 400", sans-serif;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 1.02;
+    letter-spacing: -.035em;
+  }
+  h1 em { font-style: normal; color: var(--cobalt); }
+
+  .sub {
+    margin-top: 34px;
+    max-width: 26ch;
+    font-size: 33px;
+    line-height: 1.42;
+    color: var(--mid);
+  }
+
+  .spacer { flex: 1; min-height: 40px; }
+
+  /* --- proof row -------------------------------------------------------- */
+  .proof { display: flex; gap: 18px; flex-wrap: wrap; }
+  .proof span {
+    padding: 13px 22px;
+    border: 1px solid rgba(242,244,248,.16);
+    border-radius: 40px;
+    font-family: "TWK Lausanne 400", monospace;
+    font-size: 21px;
+    letter-spacing: .04em;
+    color: rgb(196, 202, 222);
+  }
+  .caveat {
+    margin-top: 18px;
+    font-size: 17px;
+    letter-spacing: .02em;
+    color: var(--faint);
+  }
+
+  /* --- call to action --------------------------------------------------- */
+  .cta { margin-top: 44px; padding-top: 40px; border-top: 1px solid rgba(242,244,248,.14); }
+  .cta__line {
+    font-family: "TWK Lausanne 500", sans-serif;
+    font-size: 37px; letter-spacing: -.01em;
+  }
+  .cta__mail {
+    display: inline-flex; align-items: center; gap: 14px;
+    margin-top: 22px; padding: 17px 30px;
+    border-radius: 40px;
+    background: var(--cobalt);
+    color: #05070d;
+    font-family: "TWK Lausanne 500", sans-serif;
+    font-size: 30px; letter-spacing: -.01em;
+  }
+  .cta__mail svg { display: block; }
+
+  /* --- formats ---------------------------------------------------------- */
+  body[data-f="square"]   .ad { width: 1080px; height: 1080px; }
+  body[data-f="portrait"] .ad { width: 1080px; height: 1350px; }
+  body[data-f="story"]    .ad { width: 1080px; height: 1920px; }
+
+  body[data-f="square"] .ad__inner { padding: 76px 78px; }
+  body[data-f="square"] h1 { font-size: 82px; margin-top: 26px; }
+  body[data-f="square"] .eyebrow { margin-top: 46px; }
+  body[data-f="square"] .sub { font-size: 29px; margin-top: 26px; }
+  body[data-f="square"] .cta { margin-top: 32px; padding-top: 30px; }
+
+  body[data-f="story"] .ad__inner { padding: 190px 88px 170px; }
+  body[data-f="story"] h1 { font-size: 104px; }
+  body[data-f="story"] .sub { font-size: 35px; }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="ad__bg" id="bg"></div>
+  <div class="ad__veil"></div>
+  <span class="mark mark--tl">+</span>
+  <span class="mark mark--tr">+</span>
+  <span class="mark mark--bl">+</span>
+  <span class="mark mark--br">+</span>
+
+  <div class="ad__inner">
+    <div class="logo">
+      <span class="logo__mark">W<i>1</i></span>
+      <span class="logo__word">WEEK ONE <i>AI</i></span>
+    </div>
+
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="headline"></h1>
+    <p class="sub" id="sub"></p>
+
+    <div class="spacer"></div>
+
+    <div class="proof" id="proof"></div>
+    <p class="caveat" id="caveat"></p>
+
+    <div class="cta">
+      <p class="cta__line" id="ctaline"></p>
+      <span class="cta__mail">
+        <svg width="26" height="26" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M 0.5 3 C 0.5 1.895 1.395 1 2.5 1 L 11.5 1 C 12.605 1 13.5 1.895 13.5 3 L 13.5 4.25 L 7.894 7.053 C 7.331 7.334 6.669 7.334 6.106 7.053 L 0.5 4.25 Z M 13.5 11 C 13.5 12.105 12.605 13 11.5 13 L 2.5 13 C 1.395 13 0.5 12.105 0.5 11 L 0.5 5.357 L 5.838 9.17 C 6.533 9.666 7.467 9.666 8.162 9.17 L 13.5 5.357 Z" fill="#05070d"></path>
+        </svg>
+        info@weekoneai.com
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+  var CONCEPTS = {
+    // the missed-call economics, straight from the essay
+    a: {
+      bg: '/assets/weekoneai.com/media/insight-missed-call.jpg',
+      eyebrow: 'For service businesses',
+      headline: 'Every missed call books with <em>whoever picks up next.</em>',
+      sub: 'AI answers every call, qualifies the job and puts it on your calendar. After hours included.',
+      proof: ['24/7 call answering', 'Books into your calendar', 'Logged to your CRM'],
+      caveat: 'Illustrative: 300 calls a month, 20% unanswered, $350 average ticket ≈ $63,000 a year.',
+      cta: 'Book a 30-minute working session.'
+    },
+    // speed as the differentiator
+    b: {
+      bg: '/assets/weekoneai.com/media/weekone-bg-poster.jpg',
+      eyebrow: 'AI consultancy',
+      headline: 'AI systems live in <em>week one.</em> Not next quarter.',
+      sub: 'Strategy, systems and growth work — deployed against real operations, not drawn on a slide.',
+      proof: ['Day 01 · working session', 'Day 03 · blueprint', 'Day 07 · live'],
+      caveat: 'Fixed scope, named deliverables, a go-live date. You own the accounts and the data.',
+      cta: 'Book a 30-minute working session.'
+    },
+    // the front-office promise, in the explainer's cadence
+    c: {
+      bg: '/assets/weekoneai.com/media/pillar-front-office.jpg',
+      eyebrow: 'An AI front office',
+      headline: 'We answer. We qualify. We book. <em>You work.</em>',
+      sub: 'Painting and trades, HVAC, roofing, legal, healthcare, real estate — wherever the phone is the front door.',
+      proof: ['Every call answered', 'Instant lead response', 'Follow-up that happens'],
+      caveat: 'A limited number of engagements at a time — speed requires focus.',
+      cta: 'Book a 30-minute working session.'
+    }
+  };
+
+  var q = new URLSearchParams(location.search);
+  var c = CONCEPTS[q.get('v') || 'a'];
+  document.body.setAttribute('data-f', q.get('f') || 'portrait');
+
+  document.getElementById('bg').style.backgroundImage = 'url("' + c.bg + '")';
+  document.getElementById('eyebrow').textContent = c.eyebrow;
+  document.getElementById('headline').innerHTML = c.headline;
+  document.getElementById('sub').textContent = c.sub;
+  document.getElementById('caveat').textContent = c.caveat;
+  document.getElementById('ctaline').textContent = c.cta;
+
+  var proof = document.getElementById('proof');
+  c.proof.forEach(function (p) {
+    var s = document.createElement('span');
+    s.textContent = p;
+    proof.appendChild(s);
+  });
+</script>
+</body>
+</html>
