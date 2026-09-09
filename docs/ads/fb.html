@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Week One AI — Facebook creatives</title>
+<!--
+  Facebook post creatives, 1200 x 630 (1.91:1).
+
+  Six layouts rather than one template with the copy swapped — landscape needs
+  composition, not a resized portrait. Open /docs/ads/fb.html?l=1 … ?l=6 and
+  screenshot at 1200x630.
+
+  Brand only: cobalt #4D7EF7 is the single accent, ground #060709, ice #F2F4F8,
+  TWK Lausanne throughout.
+-->
+<style>
+  @font-face { font-family: "TWK 250"; src: url("/assets/cdn/assets/j39DW36fUW6XRxQyKuAmMcGgcg.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 300"; src: url("/assets/cdn/assets/mOV32H8pOWpHxuE0VPZ4YtlFUk.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 400"; src: url("/assets/cdn/assets/YHHz0OzMuyHlfEcb0QAeqAKn5c.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 500"; src: url("/assets/cdn/assets/VyWr5kjjLG1bm4Gf5RUiekAP64.woff2"); font-display: block; }
+  @font-face { font-family: "TWK 600"; src: url("/assets/cdn/assets/mLAggy4ScPG3jmWlBjYKNeVx0A.woff2"); font-display: block; }
+
+  :root {
+    --ground: #060709;
+    --surface: #0C0E12;
+    --ice: #F2F4F8;
+    --cobalt: #4D7EF7;
+    --mid: rgb(150, 156, 176);
+    --faint: rgb(99, 100, 117);
+    --line: rgba(242, 244, 248, .14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #111; }
+
+  .ad {
+    position: relative;
+    width: 1200px; height: 630px;
+    overflow: hidden;
+    background: var(--ground);
+    color: var(--ice);
+    font-family: "TWK 300", sans-serif;
+  }
+  body[data-r="square"] .ad { width: 1200px; height: 1200px; }
+  body[data-r="portrait"] .ad { width: 1200px; height: 1500px; }
+
+  .lockup {
+    position: absolute; top: 40px; left: 52px; z-index: 5;
+    display: flex; align-items: center; gap: 13px;
+  }
+  .lockup b { font-family: "TWK 600"; font-size: 27px; letter-spacing: -.02em; font-weight: 400; }
+  .lockup b i { font-style: normal; color: var(--cobalt); }
+  .lockup span { font-family: "TWK 500"; font-size: 15px; letter-spacing: .17em; color: rgb(204,209,233); }
+  .lockup span i { font-style: normal; color: var(--cobalt); }
+
+  .mail {
+    position: absolute; right: 52px; bottom: 42px; z-index: 5;
+    display: inline-flex; align-items: center; gap: 11px;
+    padding: 13px 24px; border-radius: 40px;
+    background: var(--cobalt); color: #05070d;
+    font-family: "TWK 500"; font-size: 21px;
+  }
+  .mail--ghost { background: none; border: 1px solid var(--line); color: var(--ice); }
+  .mail svg { display: block; }
+
+  .kicker {
+    position: absolute; left: 52px; bottom: 46px; z-index: 5;
+    font-family: "TWK 400"; font-size: 17px; letter-spacing: -.01em; color: var(--mid);
+  }
+
+  .l1, .l2, .l3, .l4, .l5, .l6 { height: 100%; }
+
+  em { font-style: normal; color: var(--cobalt); }
+  .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+
+  /* ------------------------------------------------ 1 · the number ------ */
+  .l1 { display: grid; grid-template-columns: 1.08fr .92fr; }
+  .l1__left { position: relative; z-index: 4; padding: 132px 0 0 52px; }
+  .l1__eyebrow { font-family: "TWK 400"; font-size: 15px; letter-spacing: .26em; text-transform: uppercase; color: var(--cobalt); }
+  .l1__fig {
+    margin-top: 12px;
+    font-family: "TWK 600"; font-weight: 400;
+    font-size: 168px; line-height: .88; letter-spacing: -.055em;
+  }
+  .l1__say { margin-top: 22px; max-width: 15ch; font-size: 25px; line-height: 1.4; color: var(--mid); }
+  .l1__note { margin-top: 26px; max-width: 40ch; font-size: 13px; line-height: 1.5; color: var(--faint); }
+  .l1__right { position: relative; }
+  .l1__right .photo { opacity: .62; }
+  .l1__right::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--ground) 0%, rgba(6,7,9,.35) 45%, rgba(6,7,9,.55) 100%);
+  }
+
+  /* ------------------------------------------------ 2 · the split ------- */
+  .l2 { display: grid; grid-template-columns: 1fr 1fr; }
+  .l2__a { position: relative; padding: 150px 44px 0 52px; }
+  .l2__a .photo { opacity: .3; }
+  .l2__a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,7,9,.7), rgba(6,7,9,.95)); }
+  .l2__a > * { position: relative; z-index: 3; }
+  .l2__ring { font-family: "TWK 400"; font-size: 54px; line-height: 1.16; letter-spacing: -.03em; color: rgb(88, 92, 108); }
+  .l2__b {
+    position: relative; background: var(--cobalt); color: #05070d;
+    padding: 150px 52px 0 56px;
+  }
+  .l2__b h2 { font-family: "TWK 600"; font-weight: 400; font-size: 92px; line-height: .98; letter-spacing: -.045em; }
+  .l2__b p { margin-top: 22px; font-family: "TWK 400"; font-size: 23px; line-height: 1.45; max-width: 17ch; color: rgba(5,7,13,.78); }
+  .l2 .mail { background: #05070d; color: var(--ice); }
+
+  /* ------------------------------------------------ 3 · four beats ------ */
+  .l3 { padding: 128px 52px 0; }
+  .l3__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 8px; }
+  .l3__cell { padding: 34px 26px 0 0; border-top: 1px solid var(--line); }
+  .l3__cell:last-child { color: var(--cobalt); border-top-color: var(--cobalt); }
+  .l3__n { font-family: "TWK 400"; font-size: 13px; letter-spacing: .2em; color: var(--faint); }
+  .l3__cell:last-child .l3__n { color: var(--cobalt); }
+  .l3__w { margin-top: 14px; font-family: "TWK 600"; font-weight: 400; font-size: 56px; letter-spacing: -.04em; line-height: 1; }
+  .l3__lede { margin-top: 44px; max-width: 46ch; font-size: 22px; line-height: 1.5; color: var(--mid); }
+
+  /* ------------------------------------------------ 4 · the calendar ---- */
+  .l4 { display: grid; grid-template-columns: 1.05fr .95fr; }
+  .l4__left { padding: 126px 20px 0 52px; }
+  .l4__left h2 { font-family: "TWK 400"; font-weight: 400; font-size: 78px; line-height: 1.02; letter-spacing: -.04em; }
+  .l4__left p { margin-top: 24px; max-width: 22ch; font-size: 22px; line-height: 1.45; color: var(--mid); }
+  .l4__cal { align-self: center; margin: 0 52px 0 0; padding: 26px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+  .l4__cal h3 { font-family: "TWK 400"; font-weight: 400; font-size: 19px; margin-bottom: 16px; }
+  .l4__cal h3 span { color: var(--faint); }
+  .l4__days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .l4__days i {
+    font-style: normal; aspect-ratio: 1; display: grid; place-items: center;
+    border-radius: 7px; font-family: "TWK 400"; font-size: 14px; color: rgb(120,124,140);
+  }
+  .l4__days i.on { background: var(--cobalt); color: #05070d; }
+  .l4__days i.dim { color: rgb(58,60,70); }
+  .l4__slot {
+    margin-top: 16px; padding: 12px 16px; border-radius: 10px;
+    background: rgba(77,126,247,.12); border: 1px solid rgba(77,126,247,.5);
+    font-family: "TWK 400"; font-size: 16px; color: var(--cobalt);
+  }
+
+  /* ------------------------------------------------ 5 · the waveform ---- */
+  .l5 { position: relative; padding: 150px 52px 0; }
+  .l5__bars { position: absolute; right: 52px; bottom: 108px; left: 54%; height: 330px; display: flex; align-items: flex-end; gap: 6px; opacity: .7; }
+  .l5__bars b { flex: 1; background: linear-gradient(180deg, var(--cobalt), rgba(77,126,247,.12)); border-radius: 3px; }
+  .l5 h2 { position: relative; z-index: 3; font-family: "TWK 400"; font-weight: 400; font-size: 72px; line-height: 1.04; letter-spacing: -.042em; max-width: 13ch; }
+  .l5 p { position: relative; z-index: 3; margin-top: 22px; max-width: 26ch; font-size: 23px; line-height: 1.45; color: var(--mid); }
+
+  /* ------------------------------------------------ 6 · the ledger ------ */
+  .l6 { display: grid; grid-template-columns: 1fr 1fr; }
+  .l6__left { padding: 128px 30px 0 52px; }
+  .l6__left h2 { font-family: "TWK 400"; font-weight: 400; font-size: 74px; line-height: 1.03; letter-spacing: -.04em; }
+  .l6__left p { margin-top: 22px; max-width: 21ch; font-size: 21px; line-height: 1.45; color: var(--mid); }
+  .l6__list { align-self: center; margin-right: 52px; }
+  .l6__row { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 21px; }
+  .l6__row span:first-child { color: rgb(120,124,140); text-decoration: line-through; text-decoration-color: rgba(120,124,140,.5); }
+  .l6__row span:last-child { font-family: "TWK 400"; color: rgb(150,156,176); }
+  .l6__row--total { border-bottom: 0; padding-top: 22px; }
+  .l6__row--total span:first-child { color: var(--ice); text-decoration: none; font-family: "TWK 400"; }
+  .l6__row--total span:last-child { color: var(--cobalt); font-family: "TWK 600"; font-size: 34px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad"></div>
+
+<script>
+  var MAIL =
+    '<span class="mail"><svg width="20" height="20" viewBox="0 0 14 14"><path d="M 0.5 3 C 0.5 1.895 1.395 1 2.5 1 L 11.5 1 C 12.605 1 13.5 1.895 13.5 3 L 13.5 4.25 L 7.894 7.053 C 7.331 7.334 6.669 7.334 6.106 7.053 L 0.5 4.25 Z M 13.5 11 C 13.5 12.105 12.605 13 11.5 13 L 2.5 13 C 1.395 13 0.5 12.105 0.5 11 L 0.5 5.357 L 5.838 9.17 C 6.533 9.666 7.467 9.666 8.162 9.17 L 13.5 5.357 Z" fill="currentColor"></path></svg>info@weekoneai.com</span>';
+
+  var LOCKUP = '<div class="lockup"><b>W<i>1</i></b><span>WEEK ONE <i>AI</i></span></div>';
+
+  function kicker(t) { return '<p class="kicker">' + t + '</p>'; }
+
+  var PHONE = '/assets/weekoneai.com/media/insight-missed-call.jpg';
+  var DESK = '/assets/weekoneai.com/media/plate-desk.jpg';
+
+  var LAYOUTS = {
+    // the cost, as one number
+    1: function () {
+      return '<div class="l1">' +
+        '<div class="l1__left">' +
+          '<p class="l1__eyebrow">The unanswered phone</p>' +
+          '<p class="l1__fig">$63,000</p>' +
+          '<p class="l1__say">a year in calls that rang out.</p>' +
+          '<p class="l1__note">Illustrative: 300 calls a month, 20% unanswered, $350 average ticket.</p>' +
+        '</div>' +
+        '<div class="l1__right"><div class="photo" style="background-image:url(' + PHONE + ')"></div></div>' +
+      '</div>' + LOCKUP + kicker('Book a 30-minute working session') + MAIL;
+    },
+    // before / after, straight down the middle
+    2: function () {
+      return '<div class="l2">' +
+        '<div class="l2__a"><div class="photo" style="background-image:url(' + PHONE + ')"></div>' +
+          '<p class="l2__ring">Ring.<br>Ring.<br>Ring.</p></div>' +
+        '<div class="l2__b"><h2>We pick&nbsp;up.</h2>' +
+          '<p>Every call answered, qualified and booked — including the ones after hours.</p></div>' +
+      '</div>' + LOCKUP + MAIL;
+    },
+    // the four-beat promise
+    3: function () {
+      var beats = [['01', 'We answer'], ['02', 'We qualify'], ['03', 'We book'], ['04', 'You work']];
+      return '<div class="l3">' + '<div class="l3__grid">' +
+        beats.map(function (b) {
+          return '<div class="l3__cell"><p class="l3__n">' + b[0] + '</p><p class="l3__w">' + b[1] + '</p></div>';
+        }).join('') +
+        '</div>' +
+        '<p class="l3__lede">An AI front office for painting and trades, HVAC, roofing, legal, healthcare and real estate — wherever the phone is the front door.</p>' +
+      '</div>' + LOCKUP + kicker('Book a 30-minute working session') + MAIL;
+    },
+    // live in a week, shown on a calendar
+    4: function () {
+      var cells = '';
+      for (var d = 1; d <= 28; d++) {
+        var cls = d === 7 ? 'on' : (d % 7 === 6 || d % 7 === 0 ? 'dim' : '');
+        cells += '<i class="' + cls + '">' + d + '</i>';
+      }
+      return '<div class="l4">' +
+        '<div class="l4__left"><h2>Live in <em>week one.</em><br>Not next quarter.</h2>' +
+          '<p>Day 01 a working session. Day 03 the blueprint. Day 07 in production.</p></div>' +
+        '<div class="l4__cal"><h3>Week one <span>· go-live</span></h3>' +
+          '<div class="l4__days">' + cells + '</div>' +
+          '<div class="l4__slot">Day 07 — system live</div></div>' +
+      '</div>' + LOCKUP + kicker('Book a 30-minute working session') + MAIL;
+    },
+    // the voice line
+    5: function () {
+      var bars = '';
+      var h = [18, 34, 62, 41, 78, 96, 55, 30, 68, 88, 47, 22, 59, 84, 100, 63, 36, 71, 92, 48, 26, 57, 80, 44, 19, 66, 90, 52, 28, 74];
+      for (var i = 0; i < h.length; i++) bars += '<b style="height:' + h[i] + '%"></b>';
+      return '<div class="l5">' +
+        '<div class="l5__bars">' + bars + '</div>' +
+        '<h2>Your phone rings. <em>Nobody answers.</em></h2>' +
+        '<p>A voice line that picks up every time — after hours, on the job, and when three calls land at once.</p>' +
+      '</div>' + LOCKUP + kicker('Book a 30-minute working session') + MAIL;
+    },
+    // what leaks, itemised
+    6: function () {
+      var rows = [
+        ['After-hours calls', 'rings out'],
+        ['Leads chased by hand', 'goes cold'],
+        ['Follow-up nobody sent', 'forgotten'],
+        ['Estimates never booked', 'lost']
+      ].map(function (r) {
+        return '<div class="l6__row"><span>' + r[0] + '</span><span>' + r[1] + '</span></div>';
+      }).join('');
+      return '<div class="l6">' +
+        '<div class="l6__left"><h2>The leaks you<br>stopped counting.</h2>' +
+          '<p>Every service business has the same four. We close them in week one.</p></div>' +
+        '<div class="l6__list">' + rows +
+          '<div class="l6__row l6__row--total"><span>Closed in week one</span><span>4 / 4</span></div>' +
+        '</div>' +
+      '</div>' + LOCKUP + kicker('Book a 30-minute working session') + MAIL;
+    }
+  };
+
+  var q = new URLSearchParams(location.search);
+  document.body.setAttribute('data-r', q.get('r') || 'fb');
+  document.getElementById('ad').innerHTML = (LAYOUTS[q.get('l') || '1'])();
+</script>
+</body>
+</html>

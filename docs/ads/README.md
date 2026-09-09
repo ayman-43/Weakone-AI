@@ -46,3 +46,33 @@ chrome --headless=new --hide-scrollbars --window-size=1080,1350 \
 ```
 
 Backgrounds are the company's own photography from `assets/weekoneai.com/media/`.
+
+---
+
+## Facebook posts — 1200×630 (1.91:1)
+
+In `facebook/`. Six **different compositions**, not one template with the words
+swapped — a landscape frame needs its own layout, and varied art direction is
+what stops a set from burning out after a few days.
+
+| | Idea | The visual |
+|---|---|---|
+| 01 | `$63,000` a year in calls that rang out | the number at full height, phone photograph beside it |
+| 02 | "Ring. Ring. Ring." → **We pick up.** | hard split, cobalt takes the right half |
+| 03 | We answer / We qualify / We book / You work | four ruled columns, the last one cobalt |
+| 04 | Live in week one. Not next quarter. | a calendar with day 07 lit |
+| 05 | Your phone rings. Nobody answers. | a voice waveform in cobalt |
+| 06 | The leaks you stopped counting | an itemised ledger, each line struck through |
+
+Source is `fb.html` — `?l=1` … `?l=6` picks the layout, and `?r=square` or
+`?r=portrait` re-flows the same layout to 1200×1200 or 1200×1500 if you want
+the set in another placement.
+
+```bash
+chrome --headless=new --hide-scrollbars --window-size=1200,630 \
+  --screenshot=out.png "http://localhost:8099/docs/ads/fb.html?l=2"
+```
+
+Layouts 1 and 2 lead with the problem, 3 and 5 with the mechanism, 4 with speed,
+6 with the audit. Run one from each group first — they fail differently, which
+is what tells you something.
